@@ -3,6 +3,8 @@ import { z } from "zod";
 import { prisma } from "@/lib/prisma";
 import { verifyPassword, generateToken, setSession } from "@/lib/auth";
 
+export const runtime = "nodejs";
+
 const loginSchema = z.object({
   email: z.string().email(),
   password: z.string(),
@@ -35,7 +37,7 @@ export async function POST(req: Request) {
     }
 
     // Generate token
-    const token = generateToken({
+    const token = await generateToken({
       id: user.id,
       email: user.email,
       role: user.role,

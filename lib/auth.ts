@@ -1,8 +1,10 @@
 import { compare, hash } from "bcryptjs";
-import { sign, verify } from "jsonwebtoken";
+import { SignJWT, jwtVerify } from "jose";
 import { cookies } from "next/headers";
 
-const JWT_SECRET = process.env.JWT_SECRET || "your-secret-key";
+const JWT_SECRET = new TextEncoder().encode(
+  process.env.JWT_SECRET || "your-secret-key"
+);
 
 export async function hashPassword(password: string) {
   return hash(password, 12);
@@ -12,13 +14,18 @@ export async function verifyPassword(password: string, hashedPassword: string) {
   return compare(password, hashedPassword);
 }
 
-export function generateToken(payload: any) {
-  return sign(payload, JWT_SECRET, { expiresIn: "7d" });
+export async function generateToken(payload: any) {
+  return new SignJWT(payload)
+    .setProtectedHeader({ alg: "HS256" })
+    .setIssuedAt()
+    .setExpirationTime("7d")
+    .sign(JWT_SECRET);
 }
 
-export function verifyToken(token: string) {
+export async function verifyToken(token: string) {
   try {
-    return verify(token, JWT_SECRET);
+    const { payload } = await jwtVerify(token, JWT_SECRET);
+    return payload;
   } catch (error) {
     return null;
   }

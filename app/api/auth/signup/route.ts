@@ -3,6 +3,8 @@ import { z } from "zod";
 import { prisma } from "@/lib/prisma";
 import { hashPassword } from "@/lib/auth";
 
+export const runtime = "nodejs";
+
 const signupSchema = z.object({
   email: z.string().email(),
   password: z.string().min(6),
