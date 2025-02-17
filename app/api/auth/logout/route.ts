@@ -1,9 +1,11 @@
-import { NextResponse } from "next/server";
+import { NextRequest, NextResponse } from "next/server";
 import { cookies } from "next/headers";
 
 export const runtime = "nodejs";
+export const preferredRegion = "auto";
+export const maxDuration = 60;
 
-export async function POST() {
+export async function POST(request: NextRequest) {
   try {
     // Clear the session cookie
     cookies().delete("token");

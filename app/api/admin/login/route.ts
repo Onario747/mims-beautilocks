@@ -17,12 +17,12 @@ export async function POST(request: NextRequest) {
     const body = await request.json();
     const { email, password } = loginSchema.parse(body);
 
-    // Find user
+    // Find user and verify they are an admin
     const user = await prisma.user.findUnique({
       where: { email },
     });
 
-    if (!user) {
+    if (!user || user.role !== "ADMIN") {
       return NextResponse.json(
         { error: "Invalid credentials" },
         { status: 401 }
@@ -59,7 +59,7 @@ export async function POST(request: NextRequest) {
       );
     }
 
-    console.error("Login error:", error);
+    console.error("Admin login error:", error);
     return NextResponse.json(
       { error: "Something went wrong" },
       { status: 500 }

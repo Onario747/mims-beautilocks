@@ -1,9 +1,11 @@
-import { NextResponse } from "next/server";
+import { NextRequest, NextResponse } from "next/server";
 import { z } from "zod";
 import { prisma } from "@/lib/prisma";
 import { hashPassword } from "@/lib/auth";
 
 export const runtime = "nodejs";
+export const preferredRegion = "auto";
+export const maxDuration = 60;
 
 const signupSchema = z.object({
   email: z.string().email(),
@@ -12,9 +14,14 @@ const signupSchema = z.object({
   lastName: z.string().min(2),
 });
 
-export async function POST(req: Request) {
+export async function POST(request: NextRequest) {
   try {
-    const body = await req.json();
+    const body = await request.json();
+    console.log("Received signup request:", {
+      ...body,
+      password: "[REDACTED]",
+    });
+
     const { email, password, firstName, lastName } = signupSchema.parse(body);
 
     // Check if user already exists
@@ -23,6 +30,7 @@ export async function POST(req: Request) {
     });
 
     if (existingUser) {
+      console.log("User already exists:", email);
       return NextResponse.json(
         { error: "User already exists" },
         { status: 400 }
@@ -31,6 +39,8 @@ export async function POST(req: Request) {
 
     // Hash password and create user
     const hashedPassword = await hashPassword(password);
+    console.log("Creating new user:", email);
+
     const user = await prisma.user.create({
       data: {
         email,
@@ -47,18 +57,23 @@ export async function POST(req: Request) {
       },
     });
 
-    return NextResponse.json(user);
+    console.log("User created successfully:", user.id);
+    return NextResponse.json(user, { status: 201 });
   } catch (error) {
+    console.error("Signup error:", error);
+
     if (error instanceof z.ZodError) {
       return NextResponse.json(
-        { error: "Invalid request data" },
+        { error: "Invalid request data", details: error.errors },
         { status: 400 }
       );
     }
 
-    console.error("Signup error:", error);
     return NextResponse.json(
-      { error: "Something went wrong" },
+      {
+        error: "Something went wrong",
+        details: error instanceof Error ? error.message : "Unknown error",
+      },
       { status: 500 }
     );
   }

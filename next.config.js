@@ -1,10 +1,13 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
-  output: 'export',
+  output: "standalone",
   eslint: {
     ignoreDuringBuilds: true,
   },
-  images: { unoptimized: true },
+  images: {
+    domains: ["i.ibb.co"],
+    unoptimized: true,
+  },
 };
 
 module.exports = nextConfig;
