@@ -3,8 +3,8 @@ import { Facebook, Instagram, Twitter } from "lucide-react";
 
 export default function Footer() {
   return (
-    <footer className="border-t bg-background">
-      <div className="container px-4 py-16 grid grid-cols-1 md:grid-cols-4 gap-12">
+    <footer className="border-t bg-background w-full">
+      <div className="container px-4 py-16 grid grid-cols-1 md:grid-cols-4 gap-12 mx-auto w-full">
         <div>
           <h3 className="text-lg font-semibold mb-4">About Mims Beautilocks</h3>
           <p className="text-sm text-muted-foreground">
@@ -49,7 +49,7 @@ export default function Footer() {
             </li>
           </ul>
         </div>
-        <div>
+        {/* <div>
           <h3 className="text-lg font-semibold mb-4">Customer Service</h3>
           <ul className="space-y-2 text-sm">
             <li>
@@ -85,7 +85,7 @@ export default function Footer() {
               </Link>
             </li>
           </ul>
-        </div>
+        </div> */}
         <div>
           <h3 className="text-lg font-semibold mb-4">Connect With Us</h3>
           <div className="flex space-x-4 mb-4">
@@ -116,7 +116,7 @@ export default function Footer() {
       </div>
       <div className="border-t">
         <div className="container py-6 text-center text-sm text-muted-foreground">
-          © {new Date().getFullYear()} Glam Haven. All rights reserved.
+          © {new Date().getFullYear()} Mims Beautilocks. All rights reserved.
         </div>
       </div>
     </footer>
