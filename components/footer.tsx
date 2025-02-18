@@ -6,10 +6,10 @@ export default function Footer() {
     <footer className="border-t bg-background">
       <div className="container px-4 py-16 grid grid-cols-1 md:grid-cols-4 gap-12">
         <div>
-          <h3 className="text-lg font-semibold mb-4">About Glam Haven</h3>
+          <h3 className="text-lg font-semibold mb-4">About Mims Beautilocks</h3>
           <p className="text-sm text-muted-foreground">
-            Your premier destination for premium beauty products. Discover the
-            latest in skincare, makeup, and more.
+            Your premier destination for premium hair care products. Discover the
+            latest in skincare, hair care, and more.
           </p>
         </div>
         <div>
