@@ -9,11 +9,11 @@ export default function HeroSection() {
         <div className="relative z-10 container mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center text-white">
             <h1 className="text-5xl font-bold mb-6">
-              Discover Your Perfect Beauty
+              Your ultimate hair care products for all African women.
             </h1>
             <p className="text-xl mb-8 max-w-2xl mx-auto">
-              Explore our curated collection of premium beauty products and
-              unleash your inner radiance.
+              Search our curated collection of ultimate hair care products and
+              unleash your confidence.
             </p>
             <Button size="lg" asChild>
               <Link href="/products">Shop Now</Link>

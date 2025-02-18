@@ -5,29 +5,29 @@ import { Star } from "lucide-react";
 const testimonials = [
   {
     id: 1,
-    name: "Sarah Johnson",
+    name: "Amara Okafor",
     role: "Beauty Enthusiast",
-    image: "/testimonials/sarah.jpg",
+    image: "https://images.unsplash.com/photo-1531123897727-8f129e1688ce?q=80&w=1974&auto=format&fit=crop",
     content:
-      "The products from Glam Haven have completely transformed my skincare routine. My skin has never looked better!",
+      "The products from mims beautilocks have completely transformed my skincare routine. My skin has never looked better!",
     rating: 5,
   },
   {
     id: 2,
-    name: "Emily Chen",
+    name: "Chioma Adebayo",
     role: "Makeup Artist",
-    image: "/testimonials/emily.jpg",
+    image: "https://images.unsplash.com/photo-1543949806-2c9935e6aa78?q=80&w=1974&auto=format&fit=crop",
     content:
-      "As a professional makeup artist, I'm very particular about the products I use. Glam Haven never disappoints with their quality.",
+      "As a professional makeup artist, I'm very particular about the products I use. mims beautilocks never disappoints with their quality.",
     rating: 5,
   },
   {
     id: 3,
-    name: "Maria Rodriguez",
+    name: "Zainab Mensah",
     role: "Beauty Blogger",
-    image: "/testimonials/maria.jpg",
+    image: "https://images.unsplash.com/photo-1523824921871-d6f1a15151f1?q=80&w=1974&auto=format&fit=crop",
     content:
-      "I love how Glam Haven curates their collection. They have all the best brands and their customer service is exceptional!",
+      "I love how mims beautilocks curates their collection. They have all the best brands and their customer service is exceptional!",
     rating: 5,
   },
 ];

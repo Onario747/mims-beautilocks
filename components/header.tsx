@@ -1,7 +1,7 @@
 "use client";
 
 import Link from "next/link";
-import { ShoppingCart, Heart, Search, Menu, User, LogOut } from "lucide-react";
+import { ShoppingCart, Heart, Search } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import {
   DropdownMenu,
@@ -12,6 +12,7 @@ import {
 } from "@/components/ui/dropdown-menu";
 import { Input } from "@/components/ui/input";
 import { MainNav } from "@/components/MainNav";
+import { MobileNav } from "@/components/MobileNav";
 import Image from "next/image";
 import { useRouter } from "next/navigation";
 import { useState, useEffect } from "react";
@@ -112,7 +113,14 @@ export default function Header() {
             <DropdownMenu>
               <DropdownMenuTrigger asChild>
                 <Button variant="ghost" size="icon" className="hidden md:flex">
-                  <User className="h-5 w-5" />
+                  <span className="sr-only">Open user menu</span>
+                  <div className="flex items-center gap-2">
+                    <div className="h-6 w-6 rounded-full bg-primary/10 flex items-center justify-center">
+                      <span className="text-xs font-medium">
+                        {user.firstName?.[0] || user.email[0].toUpperCase()}
+                      </span>
+                    </div>
+                  </div>
                 </Button>
               </DropdownMenuTrigger>
               <DropdownMenuContent align="end" className="w-56">
@@ -126,9 +134,6 @@ export default function Header() {
                 </div>
                 <DropdownMenuSeparator />
                 <DropdownMenuItem asChild>
-                  <Link href="/account">My Account</Link>
-                </DropdownMenuItem>
-                <DropdownMenuItem asChild>
                   <Link href="/orders">Orders</Link>
                 </DropdownMenuItem>
                 <DropdownMenuItem asChild>
@@ -140,8 +145,7 @@ export default function Header() {
                   disabled={isLoading}
                   onClick={handleLogout}
                 >
-                  <LogOut className="mr-2 h-4 w-4" />
-                  <span>{isLoading ? "Logging out..." : "Logout"}</span>
+                  {isLoading ? "Logging out..." : "Logout"}
                 </DropdownMenuItem>
               </DropdownMenuContent>
             </DropdownMenu>
@@ -157,9 +161,11 @@ export default function Header() {
             </div>
           )}
 
-          <Button variant="ghost" size="icon" className="md:hidden">
-            <Menu className="h-5 w-5" />
-          </Button>
+          <MobileNav
+            isAuthenticated={!!user}
+            userEmail={user?.email}
+            onLogout={handleLogout}
+          />
         </div>
       </div>
     </header>

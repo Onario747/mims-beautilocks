@@ -10,27 +10,27 @@ import {
 
 const categories = [
   {
-    name: "Skincare",
-    slug: "skincare",
-    description: "Nourish and protect your skin",
+    name: "Dandruff Set",
+    slug: "dandruff-set",
+    description: "",
     image: "https://i.ibb.co/jvpcstt7/bt5.jpg",
   },
   {
-    name: "Makeup",
-    slug: "makeup",
-    description: "Express your unique beauty",
+    name: "Lice Removal set",
+    slug: "lice-removal-set",
+    description: "",
     image: "https://i.ibb.co/k2CdgZjh/bt6.jpg",
   },
   {
-    name: "Haircare",
-    slug: "haircare",
-    description: "Love your locks",
+    name: "Hair growth set",
+    slug: "hair-growth-set",
+    description: "",
     image: "https://i.ibb.co/hxtZH8KW/bt7.jpg",
   },
   {
-    name: "Fragrance",
-    slug: "fragrance",
-    description: "Discover your signature scent",
+    name: "Hair Breakage set",
+    slug: "hair-breakage-set",
+    description: "",
     image: "https://i.ibb.co/YBd8KhBg/bt8.jpg",
   },
 ];
